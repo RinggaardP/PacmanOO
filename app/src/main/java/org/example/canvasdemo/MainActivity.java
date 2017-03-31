@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
         counterText = (TextView) findViewById(R.id.counter);
         Button btnPause = (Button) findViewById(R.id.pauseGame);
 
-        levelText.setText("Level: " + level);
+
 
         timer();
 
@@ -64,9 +64,15 @@ public class MainActivity extends Activity {
 
                 if (isPaused) {
                     timer();
+                    timer2();
+                    timer3();
+                    timer4();
                     isPaused = false;
                 } else {
                     timer.cancel();
+                    timer2.cancel();
+                    timer3.cancel();
+                    timer4.cancel();
                     isPaused = true;
                 }
             }
@@ -77,7 +83,6 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                //myView.newGame=true;
                 myView.getCoins().clear();
                 myView.createCoins();
                 myView.resetScore();
@@ -220,6 +225,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void run() {
+            levelText.setText("Level: " + level);
             if (!isPaused) {
                 switch (currentDirection) {
                     case "right": {
@@ -299,7 +305,7 @@ public class MainActivity extends Activity {
                         }
                     }
                 }
-                if (level == 4) {
+                if (level >= 4) {
                     switch (currentDirGh) {
                         case "right": {
                             myView.moveRightG(12);
@@ -368,7 +374,6 @@ public class MainActivity extends Activity {
                     }
                 }
                 myView.invalidate();
-                System.out.println(ghostDir());
             }
         }
     };

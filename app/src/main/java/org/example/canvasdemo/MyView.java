@@ -71,7 +71,7 @@ public class MyView extends View{
 	{
 		//still within our boundaries?
 		if (ghostx+x+bitmap3.getWidth()< w)
-		{ghostx=ghostx-x;}
+		{ghostx=ghostx+x;}
 		invalidate();
 	}
 	public void moveLeftG(int x)
@@ -130,17 +130,11 @@ public class MyView extends View{
 		//setting the color
 		paint.setColor(Color.RED);
 		canvas.drawColor(Color.WHITE); //clear entire canvas to white color
-		//drawing a line from (0,0) -> (300,200)
-		//canvas.drawLine(0,0,300,200,paint);
 		paint.setColor(Color.GREEN);
 		//canvas.drawLine(0,200,300,0,paint);
-		
+
 		//setting the color using the format: Transparency, Red, Green, Blue
 		paint.setColor(0xff000099);
-		
-		//drawing a circle with radius 20, and center in (100,100) 
-		//canvas.drawCircle(100,100,20,paint);
-
 
 		canvas.drawBitmap(bitmap, pacx, pacy, paint);
 		canvas.drawBitmap(bitmap3, ghostx, ghosty, paint);
@@ -160,8 +154,6 @@ public class MyView extends View{
 					score ++;
 				}
 		}
-
-			System.out.println(g.isTaken());
 		} // for loop ends
 
 		super.onDraw(canvas);
@@ -202,13 +194,6 @@ public class MyView extends View{
 
 		}
 	}
-	public int getH() {return h;}
-	public int getW() {return w;}
-
-	public Canvas getCanvas() {
-		return canvas;
-	}
-
 	public int getScore() {
         return score;
     }
